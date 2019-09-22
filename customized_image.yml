@@ -7,7 +7,7 @@
   tasks:
   - name: Cloning Dockerfile from git repository
     git:
-      repo: https://github.com/sanjeevkumargm/Docker.git
+      repo: https://github.com/sanjeevkumargm1512/Docker.git
       dest: /home/ansible/Docker
 
   - name: Build Image from Dockerfile
