@@ -1,0 +1,28 @@
+---
+- hosts: all
+  remote_user: ansible
+  become: yes
+  become_method: sudo
+  connection: ssh
+  tasks:
+  - name: Cloning Dockerfile from git repository
+    git:
+      repo: https://github.com/sanjeevkumargm/Docker.git
+      dest: /home/ansible/Docker
+
+  - name: Build Image from Dockerfile
+    docker_image:
+      name: web
+      path: /home/ansible/Docker
+      state: build
+
+  - name: Running the container
+    docker_container:
+      name: web
+      image: web
+      state: started
+      ports:
+      - "8080:80"
+      tty: true
+      detach: true
+
